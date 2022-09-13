@@ -44,9 +44,9 @@ bq.bq_create_table(table_id, table_schema_list)
 ### 1. bq_create_table(table_id, table_schema_list)
 - 테이블 생성 함수
 - Parameters
-    1. table_id
+    1. table_id : str
         - "projectName.datasetName.tableName" 형식의 테이블 id
-    2. table_schema_list
+    2. table_schema_list : list(원소는 tuple)
         - 테이블 스키마 정보는 최소 컬럼명, 컬럼 타입을 가지고 있어야 함
         - https://googleapis.dev/python/bigquery/latest/generated/google.cloud.bigquery.schema.SchemaField.html
         ```Python
@@ -77,7 +77,7 @@ bq.bq_create_table(table_id, table_schema_list)
 ### 2. bq_get_query_result(target_query, print_affected_row=False)
 - SQL 쿼리를 문자열로 넣으면 실행해주는 함수
 - Parameters
-    1. target_query
+    1. target_query : str
         - 문자열 타입의 SQL 쿼리
         ```Python
         query = """
@@ -95,19 +95,29 @@ bq.bq_create_table(table_id, table_schema_list)
         WHERE rank_contents_type = 1
         """
         ```
-    2. print_affected_row
+    2. print_affected_row : boolean
         - Insert나 Update 사용 시 영향을 받은 행 수의 출력 여부를 결정하는 parameter
         - 기본 False이고, True로 하면 영향을 받은 행 수를 print로 출력한다.
         - 주 용도는 airflow에서 dag 실행 시 insert가 잘 되었는지 log 메뉴에서 확인하는 것이다.
 
+- Returns
+  - 쿼리 결과물인 iterable object가 반환된다.
+    - google.cloud.bigquery.table.RowIterator
+    - 이 Iterator에서 row 하나씩 추출하면 아래처럼 생긴 object가 나온다.
+      - `Row((100000, 'dddddd', 2222), {'map_key': 0, 'description': 1, 'battle_power': 2})`
+      -  row 클래스에 대한 설명 : [google.cloud.bigquery.table.Row](https://cloud.google.com/python/docs/reference/bigquery/latest/google.cloud.bigquery.table.Row#google_cloud_bigquery_table_Row_get)
+      -  기본적으로는, object[0] 이렇게 튜플에서 각 원소에 접근하는 방식으로 행의 값을 참조할 수 있다.
+      -  object.get("map_key")로 특정 컬럼을 지정해서 값을 참조할 수도 있다. 자세한 설명은 위의 링크 참조.
+  - select 같이 반환 결과물이 있는 쿼리가 아니라면 (drop, insert 등) google.cloud.bigquery.table._EmptyRowIterator가 반환된다.
+
 ### 3. bq_df_upload_to_table(table_id, table_schema_list, target_df)
 - pandas dataframe을 그대로 insert 하고 싶을 때 사용
 - parameters
-    1. table_id
+    1. table_id : str
         - "projectName.datasetName.tableName" 형식의 테이블 id
-    2. table_schema_list
+    2. table_schema_list : list(원소는 tuple)
         - [1. bq_create_table(table_id, table_schema_list)](#1-bq_create_tabletable_id-table_schema_list)의  table_schema_list와 같음
-    3. target_df
+    3. target_df : dataframe
         - insert 하고 싶은 dataframe
         - astype으로 반드시 자료형 bigquery의 테이블과 맞춰주어야 함
             - [astype 사용법](https://limyj0708.github.io/fastpages/python/pandas/2021/11/05/pandas_cheatsheet.html#6-3.-astype-:-%ED%83%80%EC%9E%85-%EB%B3%80%EA%B2%BD.-Bigquery%EC%97%90-df-%EC%97%85%EB%A1%9C%EB%93%9C-%EC%8B%9C-%EB%B0%98%EB%93%9C%EC%8B%9C-%EC%82%AC%EC%9A%A9)
@@ -115,9 +125,9 @@ bq.bq_create_table(table_id, table_schema_list)
 ### 4. bq_insert_json(table_id, listOfDict_row_to_insert)
 - json을 insert 하고 싶을 때 사용
 - parameters
-    1. table_id
+    1. table_id : list
         - "projectName.datasetName.tableName" 형식의 테이블 id
-    2. listOfDict_row_to_insert
+    2. listOfDict_row_to_insert : list(원소는 dict)
         - json이라고는 하였지만, 결국 python에서는 dictionary를 원소로 가지는 list를 넣어주게 됨
         - 예를 들면...
         ```Python
