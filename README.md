@@ -1,12 +1,13 @@
 # bigquery_module
 
-  * [1. 개요](#1---)
-  * [2. 사용법](#2----)
-  * [3. 구현된 함수들](#3--------)
-    + [1. bq_create_table(table_id, table_schema_list)](#1-bq-create-table-table-id--table-schema-list-)
-    + [2. bq_get_query_result(target_query, print_affected_row=False)](#2-bq-get-query-result-target-query--print-affected-row-false-)
-    + [3. bq_df_upload_to_table(table_id, table_schema_list, target_df)](#3-bq-df-upload-to-table-table-id--table-schema-list--target-df-)
-    + [4. bq_insert_json(table_id, listOfDict_row_to_insert)](#4-bq-insert-json-table-id--listofdict-row-to-insert-)
+- [bigquery_module](#bigquery_module)
+  - [1. 개요](#1-개요)
+  - [2. 사용법](#2-사용법)
+  - [3. 구현된 함수들](#3-구현된-함수들)
+    - [1. bq_create_table(table_id, table_schema_list)](#1-bq_create_tabletable_id-table_schema_list)
+    - [2. bq_get_query_result(target_query, print_affected_row=False)](#2-bq_get_query_resulttarget_query-print_affected_rowfalse)
+    - [3. bq_df_upload_to_table(table_id, table_schema_list, target_df)](#3-bq_df_upload_to_tabletable_id-table_schema_list-target_df)
+    - [4. bq_insert_json(table_id, listOfDict_row_to_insert)](#4-bq_insert_jsontable_id-listofdict_row_to_insert)
 
 ## 1. 개요
 - Google cloud python bigquery 라이브러리에서 자주 쓰게 되는 기능들을 사용하게 편하게 모듈로 만든 결과물 
