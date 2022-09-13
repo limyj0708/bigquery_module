@@ -106,7 +106,7 @@ bq.bq_create_table(table_id, table_schema_list)
     1. table_id
         - "projectName.datasetName.tableName" 형식의 테이블 id
     2. table_schema_list
-        - [1. bq_create_table(table_id, table_schema_list)](#1-bq-create-table-table-id--table-schema-list-)의  table_schema_list와 같음
+        - [1. bq_create_table(table_id, table_schema_list)](#1-bq_create_tabletable_id-table_schema_list)의  table_schema_list와 같음
     3. target_df
         - insert 하고 싶은 dataframe
         - astype으로 반드시 자료형 bigquery의 테이블과 맞춰주어야 함
