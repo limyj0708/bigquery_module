@@ -120,10 +120,10 @@ bq.bq_create_table(table_id, table_schema_list)
     2. listOfDict_row_to_insert
         - json이라고는 하였지만, 결국 python에서는 dictionary를 원소로 가지는 list를 넣어주게 됨
         - 예를 들면...
-        ```json
-        rows_to_insert = [
-            {"full_name": "Phred Phlyntstone", "age": 32},
-            {"full_name": "Wylma Phlyntstone", "age": 29},
-        ]
+        ```Python
+            rows_to_insert = [
+                {"full_name": "Phred Phlyntstone", "age": 32},
+                {"full_name": "Wylma Phlyntstone", "age": 29},
+            ]
         ```
         - key는 컬럼 이름, value는 해당 row, 해당 컬럼의 값
