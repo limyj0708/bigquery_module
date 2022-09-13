@@ -23,6 +23,7 @@ import sys
 sys.path.append("모듈 파일이 있는 폴더 경로")
 import bigquery # bigquery.py 모듈 불러옴
 ```
+
 2. 클래스 인스턴스 생성 with 서비스 계정 json 파일
 ```Python
 bq = bigquery.bigquery_module("서비스 계정 json 파일 경로")
@@ -44,9 +45,9 @@ bq.bq_create_table(table_id, table_schema_list)
 ### 1. bq_create_table(table_id, table_schema_list)
 - 테이블 생성 함수
 - Parameters
-    1. table_id : str
-        - "projectName.datasetName.tableName" 형식의 테이블 id
-    2. table_schema_list : list(원소는 tuple)
+  1. table_id : str
+    - "projectName.datasetName.tableName" 형식의 테이블 id
+  2. table_schema_list : list(원소는 tuple)
         - 테이블 스키마 정보는 최소 컬럼명, 컬럼 타입을 가지고 있어야 함
         - https://googleapis.dev/python/bigquery/latest/generated/google.cloud.bigquery.schema.SchemaField.html
         ```Python
