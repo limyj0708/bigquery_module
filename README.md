@@ -10,7 +10,7 @@
     - [4. bq_insert_json(table_id, listOfDict_row_to_insert)](#4-bq_insert_jsontable_id-listofdict_row_to_insert)
 
 ## 1. 개요
-- Google cloud python bigquery 라이브러리에서 자주 쓰게 되는 기능들을 사용하게 편하게 모듈로 만든 결과물 
+- Google cloud python bigquery 라이브러리에서 자주 쓰게 되는 기능들을 사용하기 편하게 모듈로 만든 결과물 
 - 사용하기 위해선 아래 준비사항들이 필요하다.
   - https://github.com/googleapis/python-bigquery
   - https://developers.google.com/identity/protocols/oauth2#serviceaccount
