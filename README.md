@@ -74,6 +74,7 @@ bq.bq_create_table(table_id, table_schema_list)
     - `Created table ###.FOR_MONITERING.test_power`
 
 ### 2. bq_get_query_result(target_query, print_affected_row=False)
+- SQL 쿼리를 문자열로 넣으면 실행해주는 함수
 - Parameters
     1. target_query
         - 문자열 타입의 SQL 쿼리
