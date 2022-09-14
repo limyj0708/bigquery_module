@@ -96,7 +96,7 @@ bq.bq_create_table(table_id, table_schema_list)
         WHERE rank_contents_type = 1
         """
         ```
-    1. print_affected_row : boolean
+    2. print_affected_row : boolean
         - Insert나 Update 사용 시 영향을 받은 행 수의 출력 여부를 결정하는 parameter
         - 기본 False이고, True로 하면 영향을 받은 행 수를 print로 출력한다.
         - 주 용도는 airflow에서 dag 실행 시 insert가 잘 되었는지 log 메뉴에서 확인하는 것이다.
