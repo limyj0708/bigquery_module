@@ -50,28 +50,28 @@ bq.bq_create_table(table_id, table_schema_list)
   2. table_schema_list : list(원소는 tuple)
         - 테이블 스키마 정보는 최소 컬럼명, 컬럼 타입을 가지고 있어야 함
         - https://googleapis.dev/python/bigquery/latest/generated/google.cloud.bigquery.schema.SchemaField.html
-        ```Python
-            table_schema =[
-                bigquery.SchemaField('ios_product_id', "STRING")
-                ,bigquery.SchemaField('android_product_id', "STRING")
-                ,bigquery.SchemaField('name', "STRING")
-                ,bigquery.SchemaField('company', "STRING")
-                ,bigquery.SchemaField('ios_url', "STRING")
-                ,bigquery.SchemaField('android_url', "STRING")
-            ]
-        ```    
+            ```Python
+                table_schema =[
+                    bigquery.SchemaField('ios_product_id', "STRING")
+                    ,bigquery.SchemaField('android_product_id', "STRING")
+                    ,bigquery.SchemaField('name', "STRING")
+                    ,bigquery.SchemaField('company', "STRING")
+                    ,bigquery.SchemaField('ios_url', "STRING")
+                    ,bigquery.SchemaField('android_url', "STRING")
+                ]
+            ```    
         - 아래처럼 parameter를 넘겨주면, 함수 안에서 변환하여 적용함
-        ```Python
-            table_schema = [
-            ('game_name', "STRING", '별도로 지정한 게임 이름')
-            ,('build_description', "STRING", '어느 국가 빌드인지에 대한 설명')
-            ,('appannie_appid_android', "STRING", '앱애니 안드로이드 appid')
-            ,('appannie_appid_ios', "STRING", '앱애니 ios appid')
-            ,('appannie_unified_game_name', "STRING", '앱애니 통합 관리 게임명')
-            ,('android_category', "STRING", '앱애니 안드로이드 기준 게임 카테고리')
-            ]
-            # 컬럼명, 자료형, 컬럼설명 순서
-        ```
+            ```Python
+                table_schema = [
+                ('game_name', "STRING", '별도로 지정한 게임 이름')
+                ,('build_description', "STRING", '어느 국가 빌드인지에 대한 설명')
+                ,('appannie_appid_android', "STRING", '앱애니 안드로이드 appid')
+                ,('appannie_appid_ios', "STRING", '앱애니 ios appid')
+                ,('appannie_unified_game_name', "STRING", '앱애니 통합 관리 게임명')
+                ,('android_category', "STRING", '앱애니 안드로이드 기준 게임 카테고리')
+                ]
+                # 컬럼명, 자료형, 컬럼설명 순서
+            ```
 - 생성이 완료되면, print로 어떤 테이블이 만들어졌는지 출력됨
     - `Created table ###.FOR_MONITERING.test_power`
 
@@ -79,7 +79,7 @@ bq.bq_create_table(table_id, table_schema_list)
 - SQL 쿼리를 문자열로 넣으면 실행해주는 함수
 - Parameters
     1. target_query : str
-        - 문자열 타입의 SQL 쿼리
+       - 문자열 타입의 SQL 쿼리
         ```Python
         query = """
         DECLARE c_date DATE;
@@ -96,11 +96,10 @@ bq.bq_create_table(table_id, table_schema_list)
         WHERE rank_contents_type = 1
         """
         ```
-    2. print_affected_row : boolean
+    1. print_affected_row : boolean
         - Insert나 Update 사용 시 영향을 받은 행 수의 출력 여부를 결정하는 parameter
         - 기본 False이고, True로 하면 영향을 받은 행 수를 print로 출력한다.
         - 주 용도는 airflow에서 dag 실행 시 insert가 잘 되었는지 log 메뉴에서 확인하는 것이다.
-
 - Returns
   - 쿼리 결과물인 iterable object가 반환된다.
     - google.cloud.bigquery.table.RowIterator
